@@ -4,9 +4,11 @@ set -e -x
 if [ ! -r /krb5-1.14.2.tar.gz ]; then
     wget http://web.mit.edu/kerberos/dist/krb5/1.14/krb5-1.14.2.tar.gz
     tar -xf krb5-1.14.2.tar.gz
-    cd krb5-1.14.2/src
-    ./configure && make && make install
+    (cd krb5-1.14.2/src && ./configure)
 fi
+
+cd krb5-1.14.2/src
+./configure && make && make install
 
 # Compile wheels
 for PYBIN in /opt/python/*/bin; do
