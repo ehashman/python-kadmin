@@ -1,10 +1,12 @@
 #!/bin/bash
 set -e -x
 
-wget http://web.mit.edu/kerberos/dist/krb5/1.14/krb5-1.14.2.tar.gz
-tar -xf krb5-1.14.2.tar.gz
-cd krb5-1.14.2/src
-./configure && make && make install
+if [ ! -r /krb5-1.14.2.tar.gz ]; then
+    wget http://web.mit.edu/kerberos/dist/krb5/1.14/krb5-1.14.2.tar.gz
+    tar -xf krb5-1.14.2.tar.gz
+    cd krb5-1.14.2/src
+    ./configure && make && make install
+fi
 
 # Compile wheels
 for PYBIN in /opt/python/*/bin; do
