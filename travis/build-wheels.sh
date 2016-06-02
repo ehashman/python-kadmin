@@ -1,8 +1,10 @@
 #!/bin/bash
 set -e -x
 
-# Install a system package required by our library
-yum install -y krb5-devel
+wget http://web.mit.edu/kerberos/dist/krb5/1.14/krb5-1.14.2.tar.gz
+tar -xvf krb5-1.14.2.tar.gz
+cd krb5-1.14.2/src
+./configure && make && make install
 
 # Compile wheels
 for PYBIN in /opt/python/*/bin; do
