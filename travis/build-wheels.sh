@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e -x
 
-if [ ! -r /krb5-1.14.2.tar.gz ]; then
+if [ ! -r krb5-1.14.2.tar.gz ]; then
     wget http://web.mit.edu/kerberos/dist/krb5/1.14/krb5-1.14.2.tar.gz
     tar -xf krb5-1.14.2.tar.gz
     (cd krb5-1.14.2/src && ./configure)
@@ -17,7 +17,7 @@ done
 
 # Bundle external shared libraries into the wheels
 for whl in wheelhouse/*.whl; do
-    auditwheel -vv repair $whl -w /io/wheelhouse/
+    auditwheel repair $whl -w /io/wheelhouse/
 done
 
 # Install packages and test
